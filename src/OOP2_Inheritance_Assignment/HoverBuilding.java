@@ -1,3 +1,5 @@
+package OOP2_Inheritance_Assignment;
+
 /**
  * <h1>Hover Building</h1>
  * Class to represent a prototype hover building which utilizes hover engines to achieve its

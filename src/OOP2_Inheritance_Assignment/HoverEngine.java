@@ -1,3 +1,5 @@
+package OOP2_Inheritance_Assignment;
+
 /**
  * <h1>Hover Engine</h1>
  * Class to represent a prototype hover engine, with a size and energy amount,

@@ -1,3 +1,5 @@
+package OOP2_Inheritance_Assignment;
+
 /**
  * * <h1>Hover Vehicle</h1>
  * Class to represent a prototype hovering vehicle, which uses
@@ -10,7 +12,7 @@
  *
  * @author Luke Mathieu, Tom Philip, and Ethan Xu
  */
-public class HoverVehicle extends HoverEngine{
+public class HoverVehicle extends HoverEngine {
 
     /**
      * Weight of the vehicle.
