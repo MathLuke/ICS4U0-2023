@@ -1,13 +1,15 @@
+package Arrays_Assignment;
+
 /**
- * <h1>Arrays Assignment Part 1</h1>
- * Driver class for part 1 of the Arrays Assignment. Reads CPU data from a file and stores in parallel arrays,
+ * <h1>Arrays Assignment Part 2</h1>
+ * Driver class for part 2 of the Arrays Assignment. Reads CPU data from a file and stores in a single 2D Object array,
  * which can be viewed by the user through the menu. Alternatively, the best CPU based on criteria can be output
  * if the user chooses a different menu option.
  *
  * <h2>Course Info:</h2>
  * ICS4U0 with Krasteva, V. <br></br>
  * <p>
- * 2023-03-04
+ * 2023-03-05
  *
  * @author Luke Mathieu, Tom Philip
  */
@@ -17,16 +19,11 @@ import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Arrays_Assignment_Part1 {
+public class Arrays_Assignment_Part2 {
     Scanner fileInput;
     Scanner userInput = new Scanner(System.in);
     String menuChoice;
-    String[] cpuNames;
-    int[] numCores;
-    double[] clockSpeed;
-    double[] price;
-    int[] releaseYear;
-    double[] cacheSize;
+    Object[][] data;
 
     /**
      * Class constructor. Initializes two scanners to read the data file. One of the scanners
@@ -34,12 +31,12 @@ public class Arrays_Assignment_Part1 {
      * CPUs are represented in the data file, and how large the parallel arrays should be to
      * accommodate all the data.
      */
-    public Arrays_Assignment_Part1 () {
+    public Arrays_Assignment_Part2 () {
         Scanner countNumberOfLines;
         int numberOfLines = 0;
         try {
-            fileInput = new Scanner(new File("data.csv"));
-            countNumberOfLines = new Scanner(new File("data.csv"));
+            fileInput = new Scanner(new File("Arrays_Assignment/data.csv"));
+            countNumberOfLines = new Scanner(new File("Arrays_Assignment/data.csv"));
             countNumberOfLines.nextLine(); // Skip the first (heading) line of the CSV file
             while (countNumberOfLines.hasNextLine()) {
                 countNumberOfLines.nextLine();
@@ -49,36 +46,43 @@ public class Arrays_Assignment_Part1 {
 
             fileInput.useDelimiter(",");
         } catch (FileNotFoundException e) {
-            System.out.println("File not found!");
+            System.out.println("Data file not found!");
             System.exit(-1);
         }
+        data = new Object[6][numberOfLines];
 
-        cpuNames = new String[numberOfLines];
-        numCores = new int[numberOfLines];
-        clockSpeed = new double[numberOfLines];
-        price = new double[numberOfLines];
-        releaseYear = new int[numberOfLines];
-        cacheSize = new double[numberOfLines];
     }
 
     /**
-     * Reads all data from the CSV file, and stores it into the parallel array structure.
+     * Reads all data from the CSV file, and stores it into a 2d array.
+     * Contains error-traps to catch if the data file is formatted incorrectly or contains
+     * invalid values.
      */
     public void readData () {
         int index = 0;
         fileInput.nextLine(); // Skip heading line of the CSV file.
         while (fileInput.hasNextLine()) {
+
             try {
-                cpuNames[index] = fileInput.next();
-                numCores[index] = fileInput.nextInt();
-                clockSpeed[index] = fileInput.nextDouble();
-                price[index] = fileInput.nextDouble();
-                releaseYear[index] = fileInput.nextInt();
-                cacheSize[index] = fileInput.nextDouble();
+                String[] vals = fileInput.nextLine().split(",");
+                data[0][index] = vals[0];
+                data[1][index] = Integer.parseInt(vals[1]);
+                data[2][index] = Double.parseDouble(vals[2]);
+                data[3][index] = Double.parseDouble(vals[3]);
+                data[4][index] = Integer.parseInt(vals[4]);
+                data[5][index] = Double.parseDouble(vals[5]);
+                if ((int)data[1][index] <= 0 || (double)data[2][index] <= 0.0 || (double)data[3][index] < 1.0 || (int)data[4][index] < 0 || (double)data[5][index] < 0.0) {
+                    throw new IllegalArgumentException();
+                }
+                index++;
             } catch (InputMismatchException e) {
-                System.out.println("Data file is formatted improperly. Exiting program...");
-                System.exit(-2);
+                System.err.println("Data file is formatted improperly. Please check the data file.");
+                System.exit(1);
+            } catch (IllegalArgumentException e) {
+                System.err.println("Data file contains one or more illegal values. Please check the data file.");
+                System.exit(1);
             }
+
         }
     }
 
@@ -87,7 +91,7 @@ public class Arrays_Assignment_Part1 {
      */
     private void pauseProgram () {
         System.out.println("Enter any key to continue...");
-        userInput.next();
+        userInput.nextLine();
         System.out.print("\n\n\n\n\n");
     }
 
@@ -95,7 +99,7 @@ public class Arrays_Assignment_Part1 {
      * Prints the program title, followed by 2 newlines
      */
     private void title () {
-        System.out.printf("%65s", "Arrays Assignment Part 1\n\n");
+        System.out.printf("%65s", "Arrays Assignment Part 2\n\n");
     }
 
     /**
@@ -111,7 +115,7 @@ public class Arrays_Assignment_Part1 {
         System.out.println("\nEnter 1, 2, 3, or 4");
 
         do {
-            menuChoice = userInput.next();
+            menuChoice = userInput.nextLine().strip();
             if (menuChoice.equals("1") || menuChoice.equals("2") || menuChoice.equals("3") || menuChoice.equals("4")) {
                 break;
             } else {
@@ -126,19 +130,19 @@ public class Arrays_Assignment_Part1 {
      */
     public void introduction () {
         title();
-        System.out.println("This program stores data about computer CPU's (Central Processing Units) using parallel arrays.\nThe program is also capable of determining the CPU with the best price to performance value, which is calculated by the expression:\n\nCPU Value = Number of CPU Cores * CPU Clock Speed / Math.sqrt(CPU Price)\n\n");
+        System.out.println("This program stores data about computer CPU's (Central Processing Units) using a 2D array.\nThe program is also capable of determining the CPU with the best data[3] to performance value, which is calculated by the expression:\n\nCPU Value = Number of CPU Cores * CPU Clock Speed / Math.sqrt(CPU Price)\n\n");
         pauseProgram();
     }
 
     /**
-     * Displays all the data in the parallel arrays in a table format.
+     * Displays all the data in the 2D arrays in a table format.
      */
     public void displayTable ()
     {
         title();
         System.out.println("CPU Name                      # of Cores     Clock Speed (GHz)     Price ($)     Release Year     Cache Size (MB)");
-        for (int i = 0; i < cpuNames.length; i++) {
-            System.out.printf("%-30.25s%10d%22.1f%14.2f%17d%20.3f", cpuNames[i], numCores[i], clockSpeed[i], price[i], releaseYear[i], cacheSize[i]);
+        for (int i = 0; i < data[0].length; i++) {
+            System.out.printf("%-30.25s%10d%22.1f%14.2f%17d%20.3f\n", data[0][i], (int)data[1][i], (double)data[2][i], (double)data[3][i], (int)data[4][i], (double)data[5][i]);
         }
         System.out.println("\n\n");
         pauseProgram();
@@ -150,11 +154,11 @@ public class Arrays_Assignment_Part1 {
     public void displayBest () {
         double maxScore = 0.0;
         String bestCPU = "";
-        for (int i = 0; i < cpuNames.length; i++) {
-            double current = numCores[i] * clockSpeed[i] / Math.sqrt(price[i]);
+        for (int i = 0; i < data[0].length; i++) {
+            double current = (int)data[1][i] * (double)data[2][i] / Math.sqrt((double)data[3][i]);
             if (current > maxScore) {
                 maxScore = current;
-                bestCPU = cpuNames[i];
+                bestCPU = (String)data[0][i];
             }
         }
 
@@ -164,33 +168,27 @@ public class Arrays_Assignment_Part1 {
     }
 
     /**
-     * Displays a goodby message for the user.
+     * Displays a goodbye message for the user.
      */
     public void goodbye () {
         title();
-        System.out.println("Exiting Arrays Assignment Part 1 by Luke M. and Tom P.\n\n");
+        System.out.println("Exiting Arrays Assignment Part 2 by Luke M. and Tom P.\n\n");
         pauseProgram();
     }
 
     // main method 
     public static void main(String[] args) {
-        Arrays_Assignment_Part1 arraysAssignment = new Arrays_Assignment_Part1();
+        Arrays_Assignment_Part2 arraysAssignment = new Arrays_Assignment_Part2();
         arraysAssignment.readData();
         do {
             arraysAssignment.mainMenu();
-
-            switch (arraysAssignment.menuChoice) {
-                case "1":
-                    arraysAssignment.introduction();
-                    break;
-                case "2":
-                    arraysAssignment.displayTable();
-                    break;
-                case "3":
-                    arraysAssignment.displayBest();
-                    break;
+            if (arraysAssignment.menuChoice.equals("1")) {
+                arraysAssignment.introduction();
+            } else if (arraysAssignment.menuChoice.equals("2")) {
+                arraysAssignment.displayTable();
+            } else if (arraysAssignment.menuChoice.equals("3")) {
+                arraysAssignment.displayBest();
             }
-
         } while (!arraysAssignment.menuChoice.equals("4"));
         arraysAssignment.goodbye();
     }
