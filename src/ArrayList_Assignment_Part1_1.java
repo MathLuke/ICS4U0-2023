@@ -11,7 +11,7 @@ import java.util.List;
  * <h2>Course Info:</h2>
  * ICS4U0 with Krasteva, V. <br></br>
  * <p>
- * 2023-03-09
+ * 2023-03-10
  *
  * @author Luke Mathieu, Tom Philip
  */
@@ -38,7 +38,8 @@ public class ArrayList_Assignment_Part1_1 {
     }
 
     /**
-     * Generates a random sentence based on the words in the arrayLists.
+     * Generates a random sentence based on the words in the arrayLists. Generated sentences follow the form
+     * article, noun, adverb, verb, preposition, article, adjective, noun.
      * @return The completed sentence.
      */
     public String generateSentence () {
@@ -78,8 +79,9 @@ public class ArrayList_Assignment_Part1_1 {
     // main method
     public static void main(String[] args) {
         ArrayList_Assignment_Part1_1 main = new ArrayList_Assignment_Part1_1();
+        System.out.println("Crazy Sentences Assignment by Luke Mathieu and Tom Philip: \n");
         for (int i = 0; i < 5; i++) {
-            System.out.println(main.generateSentence());
+            System.out.println(main.generateSentence() + "\n");
         }
 
     }
