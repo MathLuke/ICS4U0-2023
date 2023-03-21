@@ -1,10 +1,12 @@
+package ArrayList_Assignments;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * <h1>ArrayList Assignment Part 1.1</h1>
- * Driver class for part 1.1 of the Arrays Assignment. Generates 5 random sentences from a library
+ * Part 1.1 of the ArrayList Assignment. Generates 5 random sentences from a library
  * of words stored in multiple ArrayLists based on the word type. This part of the assignment was primarily
  * completed by Luke Mathieu.
  *
@@ -74,15 +76,5 @@ public class ArrayList_Assignment_Part1_1 {
         }
 
         return sentence + ".";
-    }
-
-    // main method
-    public static void main(String[] args) {
-        ArrayList_Assignment_Part1_1 main = new ArrayList_Assignment_Part1_1();
-        System.out.println("Crazy Sentences Assignment by Luke Mathieu and Tom Philip: \n");
-        for (int i = 0; i < 5; i++) {
-            System.out.println(main.generateSentence() + "\n");
-        }
-
     }
 }

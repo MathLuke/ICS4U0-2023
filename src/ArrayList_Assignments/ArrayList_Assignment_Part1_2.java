@@ -1,10 +1,12 @@
+package ArrayList_Assignments;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
  * <h1>ArrayList Assignment Part 1.2</h1>
- * Driver class for part 1.2 of the Arrays Assignment. Generates a random 4-line poem from a library
+ * Part 1.2 of the ArrayList Assignment. Generates a random 4-line poem from a library
  * of words stored in multiple ArrayLists based on the word type. This part of the assignment was primarily
  * completed by Luke Mathieu.
  *
@@ -110,12 +112,5 @@ public class ArrayList_Assignment_Part1_2 {
         }
 
         return poem + ".";
-    }
-
-    // main method
-    public static void main(String[] args) {
-        ArrayList_Assignment_Part1_2 main = new ArrayList_Assignment_Part1_2();
-        System.out.println("AI Poem Assignment by Luke Mathieu and Tom Philip: \n");
-        System.out.println(main.generatePoem());
     }
 }
