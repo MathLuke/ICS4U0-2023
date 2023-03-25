@@ -1,5 +1,3 @@
-package ArrayList_Assignments.MacsBook;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,17 +95,22 @@ public class MacsBook {
                 continue;
             }
             switch (in.charAt(0)) {
-                case 'a' -> createData();
-                case 'b' -> displayClass();
-                case 'c' -> displayStudent();
-                case 'd' -> {
+                case 'a':
+                    createData();
+                    break;
+                case 'b':
+                    displayClass();
+                    break;
+                case 'c':
+                    displayStudent();
+                    break;
+                case 'd':
                     exit();
                     ret = true;
-                }
-                default -> {
+                    break;
+                default:
                     System.out.println("Invalid input, please try again.\n");
                     continue;
-                }
             }
             break;
         }

@@ -1,5 +1,3 @@
-package ArrayList_Assignments.MacsBook;
-
 import java.io.IOException;
 
 /**
