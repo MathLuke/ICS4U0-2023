@@ -95,20 +95,26 @@ public class MacsBook {
                 continue;
             }
             switch (in.charAt(0)) {
-                case 'a':
+                case 'a' :
                     createData();
                     break;
-                case 'b':
+                case 'b' :
                     displayClass();
                     break;
-                case 'c':
+                case 'c' :
                     displayStudent();
                     break;
-                case 'd':
+                case 'd' :
+                    editData();
+                case 'e':
+                    sortByName();
+                case 'f':
+                    sortByAvg();
+                case 'g':
                     exit();
                     ret = true;
                     break;
-                default:
+                default :
                     System.out.println("Invalid input, please try again.\n");
                     continue;
             }
@@ -302,4 +308,25 @@ public class MacsBook {
 
         }
     }
+
+    private void sortByName(){
+
+    }
+
+    private void sortByAvg(){
+
+    }
+
+    private void editData(){
+
+    }
+
+   //private void swap(int ind1, int ind2){
+   //    ArrayList<Student> students;
+   //    Student temp;
+   //    temp=students.get(ind1);
+   //    students.set(ind1, students.get(ind2));
+   //    students.set(ind2, temp);
+   //}
+
 }
