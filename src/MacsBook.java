@@ -1,8 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * <h1>MacsBook Assignment</h1>
@@ -309,8 +306,29 @@ public class MacsBook {
         }
     }
 
-    private void sortByName(){
+    /**
+     * Sorts and returns a copy of a Student array lexicographically from least to greatest using the selection sort algorithm.
+     * Selection sort implementation based off an implementation from <a href="https://www.geeksforgeeks.org/selection-sort/">GeeksForGeeks</a>
+     * @param arr The array to be sorted.
+     * @return A copy of the Student array ordered lexicographically from least to greatest.
+     */
+    private Student[] sortByName(Student[] arr){
+        Student[] arrayCopy = Arrays.copyOf(arr, arr.length);
 
+        for (int i = 0; i < arrayCopy.length - 1; i++) {
+            int minimumIndex = i;
+            for (int j = i + 1; j < arrayCopy.length; j++) {
+                if (arrayCopy[j].getName().compareTo(arrayCopy[minimumIndex].getName()) < 0) {
+                    minimumIndex = j;
+                }
+            }
+
+            Student temp = arrayCopy[minimumIndex];
+            arrayCopy[minimumIndex] = arrayCopy[i];
+            arrayCopy[i] = temp;
+        }
+
+        return arrayCopy;
     }
 
     private void sortByAvg(){
