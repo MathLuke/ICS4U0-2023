@@ -1,3 +1,18 @@
+package MacsBook;
+
+/**
+ * <h1>Student</h1>
+ *
+ * Class to represent a Student, with a name, student number, assignment, test, and final project mark, and overall average.
+ *
+ * <h2>Course Info:</h2>
+ * ICS4U0 with Krasteva, V. <br></br>
+ * <p>
+ * 2023-03-31
+ *
+ * @author Daphne Tu, Luke Mathieu, and Henry Zhang
+ */
+
 public class Student {
     private String name;
     private long studentNumber;
@@ -54,7 +69,7 @@ public class Student {
     }
 
     public double getTestMark() {
-        return assignmentMark;
+        return testMark;
     }
 
     public void setTestMark(double testMark) {
@@ -63,7 +78,7 @@ public class Student {
     }
 
     public double getFinalProjectMark() {
-        return assignmentMark;
+        return finalProjectMark;
     }
 
     public void setFinalProjectMark(double finalProjectMark) {
@@ -73,5 +88,9 @@ public class Student {
 
     public double getAverage() {
         return average;
+    }
+
+    public String toString() {
+        return String.format("%30s%20d%17.2f%11.2f%20.2f%10.2f\n", name, studentNumber, assignmentMark, testMark, finalProjectMark, average);
     }
 }

@@ -1,3 +1,5 @@
+package MacsBook;
+
 import java.io.IOException;
 
 /**
@@ -8,9 +10,9 @@ import java.io.IOException;
  * <h2>Course Info:</h2>
  * ICS4U0 with Krasteva, V. <br></br>
  * <p>
- * 2023-03-20
+ * 2023-03-31
  *
- * @author Luke Mathieu and Tom Philip
+ * @author Daphne Tu, Luke Mathieu, and Henry Zhang
  */
 
 public class MacsBookDriver {
