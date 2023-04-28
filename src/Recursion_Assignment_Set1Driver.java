@@ -1,3 +1,15 @@
+/**
+ * <h1>Recursion Assignment Set 1</h1>
+ * Driver class for Set 1 of Recursion Assignments.
+ *
+ * <h2>Course Info:</h2>
+ * ICS4U0 with Krasteva, V. <br></br>
+ * <p>
+ * 2023-04-14
+ *
+ * @author Luke Mathieu
+ */
+
 public class Recursion_Assignment_Set1Driver {
 
     public static void main (String[] args) {
